@@ -1,0 +1,7 @@
+{
+  "name": "IronCore Gym Admin",
+  "description": "A high-performance administration dashboard for gym owners featuring real-time occupancy tracking, peak hour analytics, and AI-driven business insights.",
+  "requestFramePermissions": [
+    "camera"
+  ]
+}

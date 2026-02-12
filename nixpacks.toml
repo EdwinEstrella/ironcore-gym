@@ -1,0 +1,5 @@
+[phases.setup]
+nixPkgs = ["nodejs-20"]
+
+[phases.build]
+cmds = ["chmod +x node_modules/@esbuild/linux-x64/bin/esbuild || true", "npm run build"]
