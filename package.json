@@ -1,13 +1,10 @@
 {
-  "name": "backend",
+  "name": "ironcore-gym",
   "version": "0.1.0",
   "private": true,
   "scripts": {
     "dev": "next dev -p 3000",
-    "dev:frontend": "node node_modules/vite/bin/vite.js",
-    "build": "npm run build:frontend && mv backend/dist/* public/ && rm -rf backend/dist && next build",
-    "build:frontend": "node node_modules/vite/bin/vite.js build",
-    "build:backend": "next build",
+    "build": "next build",
     "start": "next start -p 3000",
     "lint": "eslint"
   },
@@ -30,12 +27,10 @@
     "@types/node": "^22",
     "@types/react": "^19",
     "@types/react-dom": "^19",
-    "@vitejs/plugin-react": "^5.0.0",
     "eslint": "^9",
     "eslint-config-next": "16.1.4",
     "prisma": "^7.2.0",
     "tailwindcss": "^4",
-    "typescript": "^5",
-    "vite": "^6.2.0"
+    "typescript": "^5"
   }
 }

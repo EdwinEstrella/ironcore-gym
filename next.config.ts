@@ -3,7 +3,7 @@ import type { NextConfig } from "next";
 const nextConfig: NextConfig = {
   output: process.env.NODE_ENV === 'production' ? 'standalone' : undefined,
   experimental: {
-    serverComponentsExternalPackages: true,
+    serverComponentsExternalPackages: [],
   },
   serverExternalPackages: ['@prisma/client', '@prisma/adapter-pg', 'pg'],
   webpack: (config, { isServer }) => {
