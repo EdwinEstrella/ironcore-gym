@@ -3,7 +3,7 @@ builder = "NIXPACKS"
 
 [phases.build]
 [[phases.build.cmds]]
-command = "npm ci"
+command = "npx prisma generate"
 
 [[phases.build.cmds]]
 command = "npm run build"
