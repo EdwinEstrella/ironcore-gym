@@ -5,12 +5,31 @@ import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContaine
 import { Users, DollarSign, UserPlus, Activity, TrendingUp, Timer, Eye, Search, Filter, MoreHorizontal, Crown, Plus } from "lucide-react";
 import Link from "next/link";
 
+interface DemoButtonProps {
+  children: React.ReactNode;
+  className?: string;
+  onClick?: () => void;
+  showToast: () => void;
+  title?: string;
+}
+
+function DemoButton({ children, className, onClick, showToast }: DemoButtonProps) {
+  return (
+    <button
+      onClick={(e) => { e.preventDefault(); showToast(); onClick?.(); }}
+      className={className}
+    >
+      {children}
+    </button>
+  );
+}
+
 export default function DemoPage() {
   const [activeTab, setActiveTab] = useState('dashboard');
   const [searchTerm, setSearchTerm] = useState('');
   const [statusFilter, setStatusFilter] = useState('all');
   const [showModal, setShowModal] = useState(false);
-  const [selectedMember, setSelectedMember] = useState<any>(null);
+  const [selectedMember, setSelectedMember] = useState<typeof demoMembers[number] | null>(null);
   const [toast, setToast] = useState(false);
 
   const showToast = () => {
@@ -93,15 +112,6 @@ export default function DemoPage() {
     { id: 'members', icon: <Users size={20} />, label: 'Miembros' },
     { id: 'plans', icon: <UserPlus size={20} />, label: 'Planes' },
   ];
-
-  const DemoButton = ({ children, className, onClick }: any) => (
-    <button
-      onClick={(e) => { e.preventDefault(); showToast(); onClick?.(); }}
-      className={className}
-    >
-      {children}
-    </button>
-  );
 
   return (
     <div className="min-h-screen bg-slate-950 text-slate-100">
@@ -200,6 +210,7 @@ export default function DemoPage() {
             </div>
             <div className="flex gap-2">
               <DemoButton
+                showToast={showToast}
                 onClick={() => setShowModal(true)}
                 className="bg-emerald-500 hover:bg-emerald-600 text-white px-5 py-2.5 rounded-xl font-bold transition-all shadow-lg shadow-emerald-500/20 flex items-center gap-2 active:scale-95"
               >
@@ -425,10 +436,10 @@ export default function DemoPage() {
                           </td>
                           <td className="px-6 py-4 text-right">
                             <div className="flex items-center justify-end gap-2">
-                              <DemoButton className="p-2 text-slate-400 hover:text-amber-400 hover:bg-slate-700 rounded-lg transition-colors" title="Ver (Demo)">
+                              <DemoButton showToast={showToast} className="p-2 text-slate-400 hover:text-amber-400 hover:bg-slate-700 rounded-lg transition-colors" title="Ver (Demo)">
                                 <Eye size={16} strokeWidth={2} />
                               </DemoButton>
-                              <DemoButton className="p-2 text-slate-400 hover:text-blue-400 hover:bg-slate-700 rounded-lg transition-colors" title="Editar (Demo)">
+                              <DemoButton showToast={showToast} className="p-2 text-slate-400 hover:text-blue-400 hover:bg-slate-700 rounded-lg transition-colors" title="Editar (Demo)">
                                 <MoreHorizontal size={16} strokeWidth={2} />
                               </DemoButton>
                             </div>
@@ -501,7 +512,7 @@ export default function DemoPage() {
                       ))}
                     </div>
 
-                    <DemoButton className="w-full py-4 rounded-xl font-bold transition-all bg-slate-700 hover:bg-slate-600 text-white">
+                    <DemoButton showToast={showToast} className="w-full py-4 rounded-xl font-bold transition-all bg-slate-700 hover:bg-slate-600 text-white">
                       Seleccionar Plan
                     </DemoButton>
                   </div>
@@ -655,7 +666,7 @@ export default function DemoPage() {
               >
                 Cerrar
               </button>
-              <DemoButton className="flex-1 px-4 py-3 bg-slate-700 hover:bg-slate-600 text-slate-300 rounded-xl transition-all">
+              <DemoButton showToast={showToast} className="flex-1 px-4 py-3 bg-slate-700 hover:bg-slate-600 text-slate-300 rounded-xl transition-all">
                 Editar (Demo)
               </DemoButton>
             </div>

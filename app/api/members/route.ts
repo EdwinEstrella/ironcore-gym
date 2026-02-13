@@ -1,9 +1,9 @@
 import { NextRequest } from "next/server";
 import { auth } from "@/lib/auth";
+import { MemberStatus } from "@prisma/client";
 import {
   createMember,
   getMembers,
-  getMemberStats,
 } from "@/actions/member.actions";
 
 /**
@@ -20,7 +20,7 @@ export async function GET(request: NextRequest) {
   }
 
   const { searchParams } = new URL(request.url);
-  const status = searchParams.get("status") as any;
+  const status = searchParams.get("status") as (MemberStatus | undefined);
 
   const result = await getMembers(session.user.gymId, status);
 

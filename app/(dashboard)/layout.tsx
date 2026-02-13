@@ -10,7 +10,7 @@ export default async function DashboardLayout({
 
   return (
     <div className="flex h-screen bg-slate-950">
-      <Sidebar session={session as any} />
+      {session && <Sidebar session={session} />}
       <main className="flex-1 overflow-y-auto custom-scrollbar">
         <div className="max-w-[1400px] mx-auto min-h-full">
           {children}

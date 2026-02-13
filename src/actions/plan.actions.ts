@@ -2,7 +2,7 @@
 
 import { prisma } from "@/lib/prisma";
 import { revalidatePath } from "next/cache";
-import { Plan, Subscription, SubscriptionStatus, PaymentStatus } from "@prisma/client";
+import { Plan, Subscription, SubscriptionStatus, PaymentStatus, Prisma } from "@prisma/client";
 
 // Tipos para las acciones
 export interface CreatePlanInput {
@@ -157,7 +157,7 @@ export async function createPlan(data: CreatePlanInput): Promise<PlanResult> {
         price: data.price,
         duration: data.duration,
         maxUsers: data.maxUsers,
-        features: data.features as any,
+        features: data.features as Prisma.JsonArray,
         gymId: data.gymId,
       },
     });
@@ -208,7 +208,7 @@ export async function updatePlan(data: UpdatePlanInput): Promise<PlanResult> {
         price: data.price,
         duration: data.duration,
         maxUsers: data.maxUsers,
-        features: data.features as any,
+        features: data.features as Prisma.JsonArray,
         isActive: data.isActive,
       },
     });
