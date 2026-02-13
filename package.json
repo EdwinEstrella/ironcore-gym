@@ -13,6 +13,9 @@
     "@prisma/client": "5.22.0",
     "@types/pg": "^8.16.0",
     "bcrypt": "^6.0.0",
+    "class-variance-authority": "^0.7.1",
+    "clsx": "^2.1.1",
+    "framer-motion": "^12.34.0",
     "lucide-react": "^0.562.0",
     "next": "16.1.4",
     "next-auth": "^5.0.0-beta.30",
@@ -21,6 +24,7 @@
     "react-dom": "19.2.3",
     "react-router-dom": "^7.11.0",
     "recharts": "^3.6.0",
+    "tailwind-merge": "^3.4.0",
     "zod": "^4.3.5"
   },
   "devDependencies": {
