@@ -60,7 +60,7 @@ export async function registerGym(data: RegisterInput): Promise<AuthResult> {
     const hashedPassword = await bcrypt.hash(data.userPassword, 10);
 
     // Crear gimnasio y usuario en una transacción
-    const result = await prisma.$transaction(async (tx) => {
+    await prisma.$transaction(async (tx) => {
       // Crear gimnasio
       const gym = await tx.gym.create({
         data: {

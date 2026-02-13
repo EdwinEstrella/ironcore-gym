@@ -1,8 +1,8 @@
 'use client';
 
 import { useState } from 'react';
-import { useSession, signOut } from 'next-auth/react';
-import { Crown, Plus, Check, X, TrendingUp, Users } from 'lucide-react';
+import { useSession } from 'next-auth/react';
+import { Check, Plus } from 'lucide-react';
 import Link from 'next/link';
 
 // Datos mock mientras no hay API real
@@ -61,9 +61,9 @@ const formatPrice = (price: number, period: string) => {
 };
 
 export default function PlansPage() {
-  const { data: session, status } = useSession();
+  const { data: session } = useSession();
   const [billingPeriod, setBillingPeriod] = useState<'monthly' | 'yearly'>('monthly');
-  const [selectedPlan, setSelectedPlan] = useState<string | null>(null);
+  const [selectedPlan] = useState<string | null>(null);
 
   if (status === 'loading') {
     return <div>Cargando...</div>;

@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from "recharts";
-import { Users, DollarSign, UserPlus, Activity, TrendingUp, Timer, Eye, Search, Filter, MoreHorizontal, Crown, Plus } from "lucide-react";
+import { Users, DollarSign, UserPlus, Activity, TrendingUp, Timer, Eye, Search, Filter, MoreHorizontal, Crown } from "lucide-react";
 import Link from "next/link";
 
 interface DemoButtonProps {

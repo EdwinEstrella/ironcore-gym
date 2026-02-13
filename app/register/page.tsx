@@ -54,7 +54,7 @@ export default function RegisterPage() {
       } else {
         setError(data.message || "Error al registrar");
       }
-    } catch (err) {
+    } catch {
       setError("Error al registrar. Inténtalo de nuevo.");
     } finally {
       setLoading(false);

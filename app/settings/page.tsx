@@ -71,7 +71,7 @@ export default function SettingsPage() {
       } else {
         setMessage(data.message || "Error al guardar");
       }
-    } catch (error) {
+    } catch {
       setMessage("Error al guardar la configuración");
     } finally {
       setSaving(false);

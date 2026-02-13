@@ -1,0 +1,13 @@
+[build]
+builder = "NIXPACKS"
+
+[phases.build]
+[[phases.build.cmds]]
+command = "npm ci"
+
+[[phases.build.cmds]]
+command = "npm run build"
+
+[variables]
+NODE_VERSION = "20"
+NODE_ENV = "production"

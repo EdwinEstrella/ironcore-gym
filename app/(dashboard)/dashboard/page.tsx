@@ -1,13 +1,13 @@
 'use client';
 
-import { useSession, signOut } from "next-auth/react";
+import { useSession } from "next-auth/react";
 import Link from "next/link";
-import { Users, DollarSign, UserPlus, Timer, Activity, LogOut, LogIn, Settings, Calendar, TrendingUp } from "lucide-react";
+import { DollarSign, UserPlus, Timer, Activity, TrendingUp, LogIn } from "lucide-react";
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Cell } from "recharts";
 import { useState } from "react";
 
 export default function DashboardPage() {
-  const { data: session, update } = useSession();
+  const { data: session } = useSession();
   const [showModal, setShowModal] = useState(false);
 
   // Datos demo mientras no haya API real
@@ -38,10 +38,6 @@ export default function DashboardPage() {
     { hour: "21:00", count: 35 },
     { hour: "22:00", count: 20 },
   ];
-
-  const handleSignOut = async () => {
-    await signOut({ callbackUrl: "/login" });
-  };
 
   if (!session?.user?.gymId) {
     return (

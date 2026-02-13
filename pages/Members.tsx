@@ -1,5 +1,6 @@
 
 import React, { useEffect, useState } from 'react';
+import Image from 'next/image';
 import { Search, Filter, MoreHorizontal, Mail, Phone, Calendar } from 'lucide-react';
 import { supabaseService } from '../services/supabaseMock';
 import { Member, MembershipStatus } from '../types';
@@ -81,7 +82,7 @@ const Members: React.FC = () => {
                   <tr key={member.id} className="hover:bg-slate-700/30 transition-colors group">
                     <td className="px-6 py-4">
                       <div className="flex items-center gap-3">
-                        <img src={member.avatar_url} alt={member.first_name} className="w-10 h-10 rounded-full object-cover border-2 border-slate-700" />
+                        <Image src={member.avatar_url} alt={member.first_name} width={40} height={40} className="rounded-full object-cover border-2 border-slate-700" />
                         <div>
                           <p className="font-semibold text-white">{member.first_name} {member.last_name}</p>
                           <p className="text-xs text-slate-500">{member.email}</p>

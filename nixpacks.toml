@@ -1,3 +1,9 @@
-# Forzar Node.js 20.19+ para compatibilidad con Prisma 7, Next 16 y React Router 7
+[phases.build]
+nixPkgs = ["nodejs-20_x"]
+cmds = ["npm ci", "npm run build"]
+
+[phases.start]
+cmd = "node server.js"
+
 [variables]
-NODE_VERSION = "20.19.1"
+NIXPACKS_NODE_VERSION = "20"

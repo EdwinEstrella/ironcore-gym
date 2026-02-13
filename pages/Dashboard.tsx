@@ -11,7 +11,6 @@ import { GymStats, PeakHourData } from '../types';
 const Dashboard: React.FC = () => {
   const [stats, setStats] = useState<GymStats | null>(null);
   const [peakHours, setPeakHours] = useState<PeakHourData[]>([]);
-  const [loading, setLoading] = useState(true);
   const [showModal, setShowModal] = useState(false);
 
   useEffect(() => {
@@ -22,7 +21,6 @@ const Dashboard: React.FC = () => {
       ]);
       setStats(statsData);
       setPeakHours(peakData);
-      setLoading(false);
     };
     fetchData();
   }, []);

@@ -135,7 +135,6 @@ export async function getGymStats(gymId: string) {
   try {
     const [
       gym,
-      totalMembers,
       activeMembers,
       totalPlans,
       activeSubscriptions,

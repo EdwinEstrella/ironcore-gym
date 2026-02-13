@@ -1,9 +1,10 @@
 'use client';
 
 import { useState } from 'react';
-import { useSession, signOut } from 'next-auth/react';
-import { Search, Filter, MoreHorizontal, Mail, Phone, Calendar, UserPlus, Trash2, Pencil, Eye, Crown, Users } from 'lucide-react';
+import { useSession } from 'next-auth/react';
+import { Search, Filter, Mail, Phone, Eye, Pencil, Trash2, Crown, UserPlus, Users } from 'lucide-react';
 import Link from 'next/link';
+import Image from 'next/image';
 
 // Datos mock mientras no hay API real
 const mockMembers = [
@@ -103,10 +104,9 @@ const getStatusLabel = (status: string) => {
 };
 
 export default function MembersPage() {
-  const { data: session, status } = useSession();
+  const { data: session } = useSession();
   const [searchTerm, setSearchTerm] = useState('');
   const [statusFilter, setStatusFilter] = useState('all');
-  const [selectedMember, setSelectedMember] = useState<typeof mockMembers[0] | null>(null);
 
   const filteredMembers = mockMembers.filter(member => {
     const matchesSearch = member.first_name.toLowerCase().includes(searchTerm.toLowerCase()) ||
@@ -230,10 +230,12 @@ export default function MembersPage() {
                 <tr key={member.id} className="hover:bg-slate-800/30 transition-colors">
                   <td className="px-6 py-4">
                     <div className="flex items-center gap-4">
-                      <img
+                      <Image
                         src={member.avatar_url}
                         alt={`${member.first_name} ${member.last_name}`}
-                        className="w-12 h-12 rounded-full object-cover border-2 border-slate-700"
+                        width={48}
+                        height={48}
+                        className="rounded-full object-cover border-2 border-slate-700"
                       />
                       <div>
                         <h3 className="font-semibold text-white">
@@ -272,7 +274,7 @@ export default function MembersPage() {
                   </td>
                   <td className="px-6 py-4">
                     <div className="flex items-center gap-2">
-                      <Calendar size={16} strokeWidth={2} className="text-slate-400" />
+
                       <span className="text-sm text-white">
                         {new Date(member.last_visit).toLocaleDateString('es-ES')}
                       </span>
