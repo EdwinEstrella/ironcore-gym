@@ -3,7 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { motion, AnimatePresence, useMotionValue, useTransform } from 'framer-motion';
-import { Mail, Lock, Eye, EyeClosed, ArrowRight } from 'lucide-react';
+import { Mail, Lock, Eye, EyeClosed, ArrowRight, Play } from 'lucide-react';
 import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
 
@@ -34,25 +34,6 @@ export function Component() {
     const [error, setError] = useState("");
     const [focusedInput, setFocusedInput] = useState<string | null>(null);
     const [rememberMe, setRememberMe] = useState(false);
-    const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
-
-    // For 3D card effect - increased rotation range for more pronounced 3D effect
-    const mouseX = useMotionValue(0);
-    const mouseY = useMotionValue(0);
-    const rotateX = useTransform(mouseY, [-300, 300], [10, -10]); // Increased from 5/-5 to 10/-10
-    const rotateY = useTransform(mouseX, [-300, 300], [-10, 10]); // Increased from -5/5 to -10/10
-
-    const handleMouseMove = (e: React.MouseEvent) => {
-        const rect = e.currentTarget.getBoundingClientRect();
-        mouseX.set(e.clientX - rect.left - rect.width / 2);
-        mouseY.set(e.clientY - rect.top - rect.height / 2);
-        setMousePosition({ x: e.clientX, y: e.clientY });
-    };
-
-    const handleMouseLeave = () => {
-        mouseX.set(0);
-        mouseY.set(0);
-    };
 
     const handleSubmit = async (event: React.FormEvent) => {
         event.preventDefault();
@@ -131,12 +112,8 @@ export function Component() {
                 className="w-full max-w-sm relative z-10 mx-4"
                 style={{ perspective: 1500 }}
             >
-                <motion.div
+                <div
                     className="relative"
-                    style={{ rotateX, rotateY }}
-                    onMouseMove={handleMouseMove}
-                    onMouseLeave={handleMouseLeave}
-                    whileHover={{ z: 10 }}
                 >
                     <div className="relative group">
                         {/* Card glow effect - Blue tone */}
@@ -448,6 +425,32 @@ export function Component() {
                                     </div>
                                 </motion.button>
 
+                                <div className="relative my-4">
+                                    <div className="absolute inset-0 flex items-center">
+                                        <span className="w-full border-t border-white/10" />
+                                    </div>
+                                    <div className="relative flex justify-center text-xs uppercase">
+                                        <span className="bg-[#111827] px-2 text-white/40">O</span>
+                                    </div>
+                                </div>
+
+                                <motion.button
+                                    whileHover={{ scale: 1.02 }}
+                                    whileTap={{ scale: 0.98 }}
+                                    type="button"
+                                    onClick={() => {
+                                        router.push("/demo");
+                                    }}
+                                    className="w-full relative group/demo"
+                                >
+                                    <div className="relative overflow-hidden bg-white/5 hover:bg-white/10 border border-white/10 hover:border-white/20 text-white font-medium h-10 rounded-lg transition-all duration-300 flex items-center justify-center">
+                                        <span className="flex items-center justify-center gap-2 text-sm">
+                                            <Play className="w-3 h-3 fill-current opacity-70" />
+                                            Ver Demo
+                                        </span>
+                                    </div>
+                                </motion.button>
+
                                 {/* Sign up link */}
                                 <motion.p
                                     className="text-center text-xs text-white/60 mt-4"
@@ -469,8 +472,8 @@ export function Component() {
                             </form>
                         </div>
                     </div>
-                </motion.div>
+                </div>
             </motion.div>
-        </div>
+        </div >
     );
 }
